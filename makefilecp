@@ -1,0 +1,23 @@
+all: app1 app2
+
+RoboticArm.o: RoboticArm.cpp RoboticArm.h
+	g++ -c RoboticArm.cpp
+
+app1.o: app1.cpp RoboticArm.h
+	g++ -c app1.cpp
+
+app2.o: app2.cpp RoboticArm.h
+	g++ -c app2.cpp
+
+app1: app1.o RoboticArm.o
+	g++ -o app1 app1.o RoboticArm.o
+
+app2: app2.o RoboticArm.o
+	g++ -o app2 app2.o RoboticArm.o
+
+clean: 
+	rm -f *.o app1 app2
+
+test: all
+	./app1
+	./app2
